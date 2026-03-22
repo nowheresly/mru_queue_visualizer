@@ -1,17 +1,17 @@
 import React from 'react';
 
 const javaCode = `class MRUQueue {
-    List<List<Integer>> l = new ArrayList<>();
+    List<LinkedList<Integer>> l = new ArrayList<>();
     int buck;
 
     public MRUQueue(int n) {
         buck = (int) Math.sqrt(n);
-        List<Integer> cur = new ArrayList<>();
+        LinkedList<Integer> cur = new LinkedList<>();
         l.add(cur);
         for (int i = 1; i <= n; ++i) {
             cur.add(i);
             if (cur.size() == buck) {
-                cur = new ArrayList<>();
+                cur = new LinkedList<>();
                 l.add(cur);
             }
         }
@@ -20,19 +20,19 @@ const javaCode = `class MRUQueue {
     public int fetch(int k) {
         k = k - 1;
         int buc = buck;
-        List<Integer> lastBucket = l.get(l.size() - 1);
+        LinkedList<Integer> lastBucket = l.get(l.size() - 1);
 
         // find kth elem
         int mod = k / buc;
         int remain = k % buc;
 
-        List<Integer> bucket = l.get(mod);
+        LinkedList<Integer> bucket = l.get(mod);
         int val = bucket.get(remain);
 
         bucket.remove(remain);
         lastBucket.add(val);
         for (int i = mod + 1; i < l.size(); i++) {
-            List<Integer> next = l.get(i);
+            LinkedList<Integer> next = l.get(i);
             if (next.isEmpty()) {
                 break;
             }
