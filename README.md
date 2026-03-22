@@ -40,3 +40,7 @@ The visualizer parses this trajectory step-by-step to animate this complex casca
 - Enter a numerical value for `Size (N)` and click **Reset** to dictate the scale of the queue.
 - Enter an index for `Fetch (k)` and click **Fetch!** to start the animation trajectory.
 - Use the built-in playback controls to pause, replay, or step linearly through the shifts line-by-line!
+
+---
+
+*This project was made with the help of Antigravity!*
