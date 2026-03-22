@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { MRUQueueSimulator } from './MRUQueueSimulator';
 import CanvasVisualizer from './CanvasVisualizer';
 import CodeViewer from './CodeViewer';
-import { Play, Pause, SkipForward, SkipBack, RotateCcw } from 'lucide-react';
+import { Play, Pause, SkipForward, SkipBack, RotateCcw, Github } from 'lucide-react';
 
 export default function App() {
   const [n, setN] = useState(16);
@@ -124,6 +124,11 @@ export default function App() {
             <input type="number" value={k} onChange={e => setK(Number(e.target.value))} style={{ width: '60px', padding: '4px', border: '1px solid #d1d5db', borderRadius: '4px' }} />
             <button onClick={handleFetch} style={{ marginLeft: '8px', padding: '4px 12px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 500 }}>Fetch!</button>
           </div>
+          <div style={{ width: '1px', height: '24px', background: '#d1d5db' }}></div>
+          <a href="https://github.com/Nowheresly/mru_queue_visualizer" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#111827', textDecoration: 'none', fontWeight: 500 }}>
+            <Github size={20} />
+            <span>GitHub</span>
+          </a>
         </div>
       </div>
 
