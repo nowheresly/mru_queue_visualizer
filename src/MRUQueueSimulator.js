@@ -42,10 +42,10 @@ export class MRUQueueSimulator {
     capture(28, `Target element ${val} found at bucket[${mod}][${remain}]`, val);
 
     bucket.splice(remain, 1);
-    capture(31, `Extracted ${val} from its bucket`, val);
+    capture(30, `Extracted ${val} from its bucket`, val);
 
     lastBucket.push(val);
-    capture(32, `Added ${val} to the end of the last bucket`, val);
+    capture(31, `Added ${val} to the end of the last bucket`, val);
 
     for (let i = mod + 1; i < this.buckets.length; i++) {
         let next = this.buckets[i];
@@ -54,16 +54,16 @@ export class MRUQueueSimulator {
             break;
         }
         let first = next.shift(); // remove(0)
-        capture(38, `Removed the first element (${first}) from bucket ${i}`, first);
+        capture(37, `Removed the first element (${first}) from bucket ${i}`, first);
         
         bucket.push(first);
-        capture(39, `Appended ${first} to bucket ${i - 1} to maintain size`, first);
+        capture(38, `Appended ${first} to bucket ${i - 1} to maintain size`, first);
         
         bucket = next;
-        capture(40, `Advanced current bucket pointer to bucket ${i}`);
+        capture(39, `Advanced current bucket pointer to bucket ${i}`);
     }
 
-    capture(43, `Returned ${val}`, val);
+    capture(42, `Returned ${val}`, val);
     
     return { val, steps };
   }
