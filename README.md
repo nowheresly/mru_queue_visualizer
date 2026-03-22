@@ -1,6 +1,6 @@
 # MRUQueue Visualizer
 
-**[🌐 View the Live Demo!](https://Nowheresly.github.io/mru_queue_visualizer/)**
+**[🌐 View the Live Demo!](https://nowheresly.github.io/mru_queue_visualizer/)**
 
 This project provides an interactive, visually stunning demonstration of a custom **Most Recently Used (MRU) Queue** implemented using **Square Root Decomposition** (similar to the logic in [LeetCode 1756: Design Most Recently Used Queue](https://leetcode.com/problems/design-most-recently-used-queue/description/)).
 
