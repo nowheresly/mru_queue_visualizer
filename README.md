@@ -26,7 +26,7 @@ The visualizer parses this trajectory step-by-step to animate this complex casca
 1. Ensure you have Node.js and Yarn installed.
 2. Navigate to the project directory:
    ```bash
-   cd visualizer
+   cd mru_queue_visualizer
    ```
 3. Install the required dependencies:
    ```bash
@@ -45,4 +45,8 @@ The visualizer parses this trajectory step-by-step to animate this complex casca
 
 ---
 
-*This project was made with the help of Antigravity!*
+<div align="center">
+  <a href="https://deepmind.google/technologies/gemini/">
+    <img src="https://img.shields.io/badge/Built%20with-Antigravity-blue?style=for-the-badge&logo=google" alt="Built with Antigravity" />
+  </a>
+</div>
