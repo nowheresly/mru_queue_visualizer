@@ -46,7 +46,7 @@ The visualizer parses this trajectory step-by-step to animate this complex casca
 ---
 
 <div align="center">
-  <a href="https://deepmind.google/technologies/gemini/">
+  <a href="https://antigravity.google/">
     <img src="https://img.shields.io/badge/Built%20with-Antigravity-blue?style=for-the-badge&logo=google" alt="Built with Antigravity" />
   </a>
 </div>
