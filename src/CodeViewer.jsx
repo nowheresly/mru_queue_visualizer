@@ -20,7 +20,6 @@ const javaCode = `class MRUQueue {
     public int fetch(int k) {
         k = k - 1;
         int buc = buck;
-        // List<List<Integer>> list = l;
         List<Integer> lastBucket = l.get(l.size() - 1);
 
         // find kth elem
@@ -60,7 +59,7 @@ export default function CodeViewer({ activeLine }) {
         const lineNum = idx + 1;
         const isActive = lineNum === activeLine;
         return (
-          <div key={lineNum} style={{ 
+          <div key={lineNum} style={{
             backgroundColor: isActive ? 'rgba(97, 175, 239, 0.3)' : 'transparent',
             borderLeft: isActive ? '4px solid #61afef' : '4px solid transparent',
             paddingLeft: '8px',

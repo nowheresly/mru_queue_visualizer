@@ -6,6 +6,8 @@ import { Play, Pause, SkipForward, SkipBack, RotateCcw } from 'lucide-react';
 
 export default function App() {
   const [n, setN] = useState(16);
+  const [rightPaneWidth, setRightPaneWidth] = useState(450);
+  const [isResizing, setIsResizing] = useState(false);
   const [k, setK] = useState(4);
   const [simulator, setSimulator] = useState(null);
   const [buckets, setBuckets] = useState([]);
@@ -79,6 +81,32 @@ export default function App() {
     return () => clearTimeout(timer);
   }, [isPlaying, stepIndex, steps.length, speedMs]);
 
+  const handleMouseMove = useCallback((e) => {
+    if (!isResizing) return;
+    setRightPaneWidth(prev => {
+      const nw = prev - e.movementX;
+      return Math.max(200, Math.min(nw, window.innerWidth - 300));
+    });
+  }, [isResizing]);
+
+  const handleMouseUp = useCallback(() => {
+    if (isResizing) setIsResizing(false);
+  }, [isResizing]);
+
+  useEffect(() => {
+    if (isResizing) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    } else {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isResizing, handleMouseMove, handleMouseUp]);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', backgroundColor: '#f3f4f6', fontFamily: 'system-ui, sans-serif' }}>
       {/* Header bar */}
@@ -100,7 +128,7 @@ export default function App() {
       </div>
 
       {/* Main content */}
-      <div style={{ display: 'flex', flex: 1, padding: '24px', gap: '24px', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', flex: 1, padding: '24px', gap: '16px', overflow: 'hidden', userSelect: isResizing ? 'none' : 'auto' }}>
         {/* Left pane: Canvas */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px', minWidth: 0 }}>
           <div style={{ flex: 1, background: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
@@ -131,8 +159,16 @@ export default function App() {
           </div>
         </div>
 
+        {/* Resizer */}
+        <div 
+          onMouseDown={() => setIsResizing(true)}
+          style={{ width: '6px', cursor: 'col-resize', background: isResizing ? '#3b82f6' : '#e5e7eb', borderRadius: '4px', alignSelf: 'stretch', flexShrink: 0, transition: 'background 0.2s' }}
+          onMouseEnter={e => e.currentTarget.style.background = isResizing ? '#3b82f6' : '#93c5fd'}
+          onMouseLeave={e => e.currentTarget.style.background = isResizing ? '#3b82f6' : '#e5e7eb'}
+        />
+
         {/* Right pane: Code */}
-        <div style={{ width: '450px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: `${rightPaneWidth}px`, display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
           <div style={{ flex: 1, borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}>
              <CodeViewer activeLine={activeLine} />
           </div>
